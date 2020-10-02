@@ -1,0 +1,11 @@
+[Unit]
+Description=DHT22 Service
+After=multi-user.target
+
+[Service]
+Type=idle
+Group=gpio
+ExecStart=/usr/bin/python /opt/datscha/dht22-mqtt.py
+
+[Install]
+WantedBy=multi-user.target
