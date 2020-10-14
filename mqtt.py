@@ -14,9 +14,10 @@ class Channel:
             print(sys.exc_info())
         self.client.loop_start()
 
-    def sensor_init(self, sensor_id, templates, room):
+    def sensor_init(self, sensor_id, device, templates, room):
         for t in templates:
-            topic, payload = self._discovery_msg(sensor_id, t, room)
+            d = { "device" : device }
+            topic, payload = self._discovery_msg(sensor_id, {**t, **d}, room)
             self._send(topic, json.dumps(payload), retain=True)
 
             topic, payload = self._online_msg(sensor_id, room)

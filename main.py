@@ -4,6 +4,7 @@
 import time
 import sensors.ds18b20 as ds18b20
 import sensors.mhz19 as mhz19
+import device
 import mqtt as comm
 
 #mqtt_host = "mqtt.hm.halbmastwurf.de"
@@ -15,6 +16,7 @@ cfg = {
 
 
 def init(channel):
+    dev = device.Device(cfg["room"])
     sensors = [
       ds18b20.Sensor(),
       mhz19.Sensor()
@@ -22,7 +24,10 @@ def init(channel):
 
     for s in sensors:
         room = cfg["room"]
-        channel.sensor_init(sensor_id=s.id(),templates=s.templates(room), room=room)
+        channel.sensor_init(sensor_id=s.id(),
+                device=dev.template(),
+                templates=s.templates(dev.id(), room),
+                room=room)
 
     return sensors
 

@@ -25,30 +25,19 @@ class Sensor:
                  "TempUnit": "C"
                }
 
-    def templates(self, room):
+    def templates(self, device_id, room):
         myid = self.id()
-        device = {
-            "identifiers": [
-                "kilimanjaro"
-            ],
-            "name": "Wohnzimmer",
-            "model": "Rasberrypi 1B",
-            "sw_version": "(raspios)",
-            "manufacturer": "Pi Foundation"
-        }
         return [
             {
                 "name": "{} {} Temperature".format(room, myid),
-                "uniq_id": "{}_{}_Temperature".format("kilimanjaro", myid),
-                "device": device,
+                "uniq_id": "{}_{}_Temperature".format(device_id, myid),
                 "unit_of_meas": "°C",
                 "val_tpl": "{{{{value_json['{}'].Temperature}}}}".format(myid),
                 "dev_cla": "temperature"
             },
             {
                 "name": "{} {} CarbonDioxide".format(room, myid),
-                "uniq_id": "{}_{}_CarbonDioxide".format("kilimanjaro", myid),
-                "device": device,
+                "uniq_id": "{}_{}_CarbonDioxide".format(device_id, myid),
                 "unit_of_meas": " ",
                 "val_tpl": "{{{{value_json['{}'].CarbonDioxide}}}}".format(myid),
             }]
