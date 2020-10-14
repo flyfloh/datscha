@@ -1,0 +1,6 @@
+{
+  "room" : "<room your sensors live in>",
+  "telemetry_time" : <number of seconds between telemetry messages>,
+  "host" : "<your mqqt server hostname or ip>",
+  "sensors" : [ "ds18b20", "mhz19" ] // list of connected sensors
+}

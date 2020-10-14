@@ -30,7 +30,7 @@ class Device:
         release = self._read("/etc/os-release")
         keys = []
         values = []
-        for line in release.splitlines:
+        for line in release.splitlines():
             kv = line.split("=",1)
             keys.append(kv[0])
             values.append(kv[1].strip('"'))
