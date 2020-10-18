@@ -12,7 +12,10 @@ class Sensor:
     def get_value(self):
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
         return { "Time" : datetime.datetime.now().isoformat(),
-                "DHT22" : { "Temperature" : temperature, "Humidity" : humidity },
+                 "DHT22" : {
+                     "Temperature" : round(temperature, 1),
+                     "Humidity" : round(humidity, 1)
+                 },
                  "TempUnit" : "C"
                }
 
