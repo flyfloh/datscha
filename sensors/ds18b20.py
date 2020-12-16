@@ -38,6 +38,10 @@ class Sensor:
     def _read_temp_raw(self):
         f = open(self.device_file, 'r')
         lines = f.readlines()
+        if len(lines) == 0:
+            print("Error: reading file")
+            print("Got: {}".format(lines))
+            return ["NO"]
         f.close()
         return lines
 
